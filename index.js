@@ -42,7 +42,7 @@ bot.on("message", function (event) {
     event.reply("https://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx");
   } else {
     event.reply(
-      "不知道該問什麼嗎？ 歡迎透過以下的關鍵字與我互動！\nOpenApi\nhttps://chat.openai.com/chat\n\n大樂透\nhttps://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx"
+      "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\nOpenApi\nhttps://chat.openai.com/chat\n\n大樂透\nhttps://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx"
     );
 
     // 主動發送訊息
@@ -71,7 +71,7 @@ app.listen(process.env.PORT || 3000, () => {
 //   channelSecret: "48d69d737406be7f8f478861f9be295d",
 // };
 
-// const client = new line.Client(config);
+const client = new line.Client(config);
 
 // const job = new cron.CronJob("*/10 * * * * *", async () => {
 //   //"分 時 日 月 星期 年"
@@ -87,3 +87,23 @@ app.listen(process.env.PORT || 3000, () => {
 // });
 
 // job.start();
+
+// 創建群組
+client
+  .createGroup("機器人測試群組")
+  .then((group) => {
+    console.log(group);
+
+    // 加入群組
+    client
+      .leaveGroup(group.id)
+      .then(() => {
+        console.log("Bot has joined the group.");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  })
+  .catch((error) => {
+    console.error(error);
+  });
