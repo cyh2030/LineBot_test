@@ -20,6 +20,7 @@ bot.on("message", function (event) {
   const introRegex = /你|誰|介紹|you|yourself|hello|你好|hi/gi;
   const resumeRegex = /resume|履歷|cv/gi;
   const blogRegex = /blog|部落格|文章/gi;
+  const searchRegex = /openapi|OpenApi|open/gi;
   const userText = event.message.text;
   if (introRegex.test(userText)) {
     event.reply("你好！我是Line Bot No.65.");
@@ -31,6 +32,8 @@ bot.on("message", function (event) {
     event.reply(
       "以下是我的部落格連結，主要發布一些新手教學、專案筆記以及求職紀錄\n\n部落格連結: https://eruditeness.news.blog/"
     );
+  } else if (searchRegex.test(userText)) {
+    event.reply("https://chat.openai.com/chat");
   } else {
     event.reply(
       "不知道該問什麼嗎？ 歡迎透過以下的關鍵字與我互動！\n\n介紹/履歷/部落格"
