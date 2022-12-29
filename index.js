@@ -42,17 +42,17 @@ bot.on("message", function (event) {
     event.reply("https://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx");
   } else {
     event.reply(
-      "不知道該問什麼嗎？ 歡迎透過以下的關鍵字與我互動！\n\nOpenApi/大樂透"
+      "不知道該問什麼嗎？ 歡迎透過以下的關鍵字與我互動！\nOpenApi\nhttps://chat.openai.com/chat\n\n大樂透\nhttps://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx"
     );
 
     // 主動發送訊息
-    setTimeout(function () {
-      var userId = "U65408a11db9afa4192268cd46d55f8df";
-      var sendMsg = "==傳送訊息測試==";
-      bot.push(userId, [sendMsg]);
-      console.log("userId: " + userId);
-      console.log("send: " + sendMsg);
-    }, 1000);
+    // setTimeout(function () {
+    //   var userId = "U65408a11db9afa4192268cd46d55f8df";
+    //   var sendMsg = "==傳送訊息測試==";
+    //   bot.push(userId, [sendMsg]);
+    //   console.log("userId: " + userId);
+    //   console.log("send: " + sendMsg);
+    // }, 1000);
   }
 });
 
@@ -64,6 +64,7 @@ app.listen(process.env.PORT || 3000, () => {
   console.log("Express server start");
 });
 
+//定時推播訊息
 // const config = {
 //   channelAccessToken:
 //     "bW3urfAiN8Lg0BgF175qpzBGbvlT2SVAN9dekAtXSHotmFwdxFPE0DWURxFDRXYVXPaso1sMDxJbFy6CVgMT6vXglbaXVSZWCZcNiZWeQ+Md413jHxpo0l16xbiYEN0WA0r2NWw8vtyn552lsaatZwdB04t89/1O/w1cDnyilFU=",
