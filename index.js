@@ -51,7 +51,7 @@ setTimeout(function () {
   bot.push(userId, [sendMsg]);
   console.log("userId: " + userId);
   console.log("send: " + sendMsg);
-}, 3000);
+}, 10);
 
 // 送出帶有line-bot需要資訊的POST請求
 app.post("/", linebotParser);
