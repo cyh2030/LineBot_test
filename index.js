@@ -88,22 +88,38 @@ const client = new line.Client(config);
 
 // job.start();
 
-// 創建群組
-client
-  .createGroup("機器人測試群組")
-  .then((group) => {
-    console.log(group);
+app.post("/webhook", line.middleware(config), (req, res) => {
+  Promise.all(req.body.events.map(handleEvent))
+    .then((result) => res.json(result))
+    .catch((error) => {
+      console.error(error);
+      res.status(500).end();
+    });
+});
 
-    // 加入群組
-    client
-      .leaveGroup(group.id)
-      .then(() => {
-        console.log("Bot has joined the group.");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+function handleEvent(event) {
+  if (event.type !== "message" || event.message.type !== "text") {
+    return Promise.resolve(null);
+  }
+
+  // 取得群組的ID
+  const groupId = event.source.groupId;
+  // 取得使用者的ID
+  const userId = event.source.userId;
+  // 回覆訊息
+  const message = {
+    type: "text",
+    text: "回覆的訊息",
+  };
+
+  client
+    .pushMessage(groupId, message)
+    .then(() => {
+      console.log(`Push message sent to ${groupId}.`);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  return Promise.resolve(null);
+}
