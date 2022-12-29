@@ -41,17 +41,17 @@ bot.on("message", function (event) {
     event.reply(
       "不知道該問什麼嗎？ 歡迎透過以下的關鍵字與我互動！\n\nOpenApi/大樂透"
     );
+
+    // 主動發送訊息
+    setTimeout(function () {
+      var userId = "U65408a11db9afa4192268cd46d55f8df";
+      var sendMsg = "==傳送訊息測試==";
+      bot.push(userId, [sendMsg]);
+      console.log("userId: " + userId);
+      console.log("send: " + sendMsg);
+    }, 10);
   }
 });
-
-// 主動發送訊息
-setTimeout(function () {
-  var userId = "U65408a11db9afa4192268cd46d55f8df";
-  var sendMsg = "push hands up ";
-  bot.push(userId, [sendMsg]);
-  console.log("userId: " + userId);
-  console.log("send: " + sendMsg);
-}, 10);
 
 // 送出帶有line-bot需要資訊的POST請求
 app.post("/", linebotParser);
