@@ -56,6 +56,14 @@ bot.on("message", function (event) {
   }
 });
 
+// 送出帶有line-bot需要資訊的POST請求
+app.post("/", linebotParser);
+
+// 啟動express server
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Express server start");
+});
+
 const client = new line.Client(config);
 
 const job = new cron.CronJob("*/10 * * * * *", async () => {
@@ -72,11 +80,3 @@ const job = new cron.CronJob("*/10 * * * * *", async () => {
 });
 
 job.start();
-
-// 送出帶有line-bot需要資訊的POST請求
-app.post("/", linebotParser);
-
-// 啟動express server
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Express server start");
-});
