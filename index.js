@@ -46,7 +46,7 @@ bot.on("message", function (event) {
 
 // 主動發送訊息
 setTimeout(function () {
-  var userId = "Your User ID";
+  var userId = "U65408a11db9afa4192268cd46d55f8df";
   var sendMsg = "push hands up ";
   bot.push(userId, [sendMsg]);
   console.log("userId: " + userId);
