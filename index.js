@@ -72,17 +72,17 @@ const config = {
 
 const client = new line.Client(config);
 
-const job = new cron.CronJob("*/10 * * * * *", async () => {
-  //"分 時 日 月 星期 年"
-  try {
-    const message = {
-      type: "text",
-      text: "每10秒的推播訊息",
-    };
-    await client.pushMessage("U65408a11db9afa4192268cd46d55f8df", message);
-  } catch (error) {
-    console.error(error);
-  }
-});
+// const job = new cron.CronJob("*/10 * * * * *", async () => {
+//   //"分 時 日 月 星期 年"
+//   try {
+//     const message = {
+//       type: "text",
+//       text: "每10秒的推播訊息",
+//     };
+//     await client.pushMessage("U65408a11db9afa4192268cd46d55f8df", message);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
 
-job.start();
+// job.start();
