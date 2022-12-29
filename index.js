@@ -5,6 +5,9 @@ const app = express();
 // 引用linebot SDK
 var linebot = require("linebot");
 
+const line = require("@line/bot-sdk");
+const cron = require("cron");
+
 // 用於辨識Line Channel的資訊
 var bot = linebot({
   channelId: process.env.channelId,
@@ -49,9 +52,26 @@ bot.on("message", function (event) {
       bot.push(userId, [sendMsg]);
       console.log("userId: " + userId);
       console.log("send: " + sendMsg);
-    }, 10);
+    }, 1000);
   }
 });
+
+const client = new line.Client(config);
+
+const job = new cron.CronJob("*/10 * * * * *", async () => {
+  //"分 時 日 月 星期 年"
+  try {
+    const message = {
+      type: "text",
+      text: "每10秒的推播訊息",
+    };
+    await client.pushMessage("U65408a11db9afa4192268cd46d55f8df", message);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+job.start();
 
 // 送出帶有line-bot需要資訊的POST請求
 app.post("/", linebotParser);
