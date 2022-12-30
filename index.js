@@ -25,6 +25,8 @@ bot.on("message", function (event) {
   //   const blogRegex = /blog|部落格|文章/gi;
   const searchRegex = /openapi|OpenApi|open|查詢|問|問題/gi;
   const LottoRegex = /大樂透|樂透|開獎/gi;
+  const LineBotSettingRegex = /LINEBOT|LineBot|linebot|bot/gi;
+  const StarbucksRegex = /星巴克|Starbucks|starbucks|star/gi;
   const userText = event.message.text;
   if (introRegex.test(userText)) {
     event.reply("你好！我是Line Bot No.65.");
@@ -40,9 +42,13 @@ bot.on("message", function (event) {
     event.reply("https://chat.openai.com/chat");
   } else if (LottoRegex.test(userText)) {
     event.reply("https://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx");
+  } else if (LineBotSettingRegex.test(userText)) {
+    event.reply("https://manager.line.biz/account/@776kbfne/stepmessage");
+  } else if (StarbucksRegex.test(userText)) {
+    event.reply("https://event.12cm.com.tw/starbucks/");
   } else {
     event.reply(
-      "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\nOpenApi\nhttps://chat.openai.com/chat\n\n大樂透\nhttps://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx"
+      "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\nOpenApi\n大樂透\nLineBot\nStarbucks"
     );
 
     // 主動發送訊息
