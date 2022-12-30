@@ -23,10 +23,10 @@ bot.on("message", function (event) {
   const introRegex = /你|誰|介紹|you|yourself|hello|你好|hi/gi;
   //   const resumeRegex = /resume|履歷|cv/gi;
   //   const blogRegex = /blog|部落格|文章/gi;
-  const searchRegex = /openapi|OpenApi|open|查詢|問|問題/gi;
+  const searchRegex = /OpenApi|open|查詢|問|問題/gi;
   const LottoRegex = /大樂透|樂透|開獎/gi;
-  const LineBotSettingRegex = /LINEBOT|LineBot|linebot|bot/gi;
-  const StarbucksRegex = /星巴克|Starbucks|starbucks|star/gi;
+  const LineBotSettingRegex = /LineBot|bot/gi;
+  const StarbucksRegex = /星巴克|Starbucks|star/gi;
   const userText = event.message.text;
   if (introRegex.test(userText)) {
     event.reply("你好！我是Line Bot No.65.");
