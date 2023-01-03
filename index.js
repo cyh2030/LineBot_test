@@ -31,7 +31,7 @@ bot.on("message", function (event) {
   const searchRegex = /OpenApi|open|查詢|問|問題/gi;
   const LottoRegex = /大樂透|樂透|開獎/gi;
   const LineBotSettingRegex = /LineBot|bot/gi;
-  const RailwayRegex = /Railway/gi;
+  const RailwayRegex = /Railway|rail/gi;
   const StarbucksRegex = /星巴克|Starbucks|star/gi;
   const BookStoreRegex = /博客來/gi;
   const userText = event.message.text;
@@ -64,15 +64,15 @@ bot.on("message", function (event) {
       "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\n" +
         getRegexString(searchRegex) +
         "\n" +
-        +getRegexString(LottoRegex) +
+        getRegexString(LottoRegex) +
         "\n" +
-        +getRegexString(LineBotSettingRegex) +
+        getRegexString(LineBotSettingRegex) +
         "\n" +
-        +getRegexString(RailwayRegex) +
+        getRegexString(RailwayRegex) +
         "\n" +
-        +getRegexString(StarbucksRegex) +
+        getRegexString(StarbucksRegex) +
         "\n" +
-        +getRegexString(BookStoreRegex) +
+        getRegexString(BookStoreRegex) +
         "\n"
     );
 
