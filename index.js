@@ -15,6 +15,11 @@ var bot = linebot({
   channelAccessToken: process.env.channelAccessToken,
 });
 
+function getRegexString(regex_string) {
+  regex_string = regex_string.source;
+  return regex_string.split("|")[0];
+}
+
 const linebotParser = bot.parser();
 
 // 當有人傳送訊息給Bot時
@@ -26,7 +31,9 @@ bot.on("message", function (event) {
   const searchRegex = /OpenApi|open|查詢|問|問題/gi;
   const LottoRegex = /大樂透|樂透|開獎/gi;
   const LineBotSettingRegex = /LineBot|bot/gi;
+  const RailwayRegex = /Railway/gi;
   const StarbucksRegex = /星巴克|Starbucks|star/gi;
+  const BookStoreRegex = /博客來/gi;
   const userText = event.message.text;
   if (introRegex.test(userText)) {
     event.reply("你好！我是Line Bot No.65.");
@@ -44,11 +51,29 @@ bot.on("message", function (event) {
     event.reply("https://www.taiwanlottery.com.tw/lotto/lotto649/history.aspx");
   } else if (LineBotSettingRegex.test(userText)) {
     event.reply("https://manager.line.biz/account/@776kbfne/stepmessage");
+  } else if (RailwayRegex.test(userText)) {
+    event.reply(
+      "https://railway.app/project/dbf06706-a84d-4472-b2f6-65e7fc172f03/service/2bb59ac7-310a-44e6-b89b-ee66806d8e5b"
+    );
+  } else if (BookStoreRegex.test(userText)) {
+    event.reply("https://www.books.com.tw/");
   } else if (StarbucksRegex.test(userText)) {
     event.reply("https://event.12cm.com.tw/starbucks/");
   } else {
     event.reply(
-      "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\nOpenApi\n大樂透\nLineBot\nStarbucks"
+      "不知道該問什麼嗎？ 現有的關鍵字及連結如下！\n" +
+        getRegexString(searchRegex) +
+        "\n" +
+        +getRegexString(LottoRegex) +
+        "\n" +
+        +getRegexString(LineBotSettingRegex) +
+        "\n" +
+        +getRegexString(RailwayRegex) +
+        "\n" +
+        +getRegexString(StarbucksRegex) +
+        "\n" +
+        +getRegexString(BookStoreRegex) +
+        "\n"
     );
 
     // 主動發送訊息
@@ -94,6 +119,7 @@ const client = new line.Client(config);
 
 // job.start();
 
+//
 app.post("/webhook", line.middleware(config), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
