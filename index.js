@@ -97,9 +97,8 @@ app.listen(process.env.PORT || 3000, () => {
 
 //定時推播訊息
 const config = {
-  channelAccessToken:
-    "bW3urfAiN8Lg0BgF175qpzBGbvlT2SVAN9dekAtXSHotmFwdxFPE0DWURxFDRXYVXPaso1sMDxJbFy6CVgMT6vXglbaXVSZWCZcNiZWeQ+Md413jHxpo0l16xbiYEN0WA0r2NWw8vtyn552lsaatZwdB04t89/1O/w1cDnyilFU=",
-  channelSecret: "48d69d737406be7f8f478861f9be295d",
+  channelAccessToken: process.env.channelAccessToken,
+  channelSecret: process.env.channelSecret,
 };
 
 const client = new line.Client(config);
